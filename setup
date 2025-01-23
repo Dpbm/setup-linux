@@ -102,12 +102,17 @@ install_softwares(){
 			'"virtualbox"')
 				install_virtualbox
 				;;
-			
 			'"githubCLI"')
 				install_github_cli
 				;;
 			'"exiftool"')
 				install_exiftool
+				;;
+			'"ohmyzsh"')
+				install_ohmyzsh
+				;;
+			'"mise"')
+				install_mise
 				;;
 			*)
 				;;

@@ -17,6 +17,8 @@ declare -A SOFTWARES=(["Chrome"]=ON
 	["virtualbox"]=OFF
 	["githubCLI"]=OFF
 	["exiftool"]=ON
+	["ohmyzsh"]=ON
+	["mise"]=ON
 )
 
 declare -A DESCRIPTIONS=(["Chrome"]="Google's Internet Browser" 
@@ -36,6 +38,8 @@ declare -A DESCRIPTIONS=(["Chrome"]="Google's Internet Browser"
 	["virtualbox"]="Oracle's virtualization platform (+ext pack)"
 	["githubCLI"]="A CLI to interact with your github"
 	["exiftool"]="A tool to manipulate files metadata"
+	["ohmyzsh"]="A framework for managing zsh configs"
+	["mise"]="A tool for mananing your programming tools versions"
 )
 
 DEFAULT_SOFTWARES=()

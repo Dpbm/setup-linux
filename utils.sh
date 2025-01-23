@@ -243,3 +243,18 @@ install_exiftool(){
 	log_installing "Exiftool"
 	ln -s $HOME/exiftool/exiftool $LOCAL_BIN
 }
+
+install_ohmyzsh(){
+	check_curl
+
+	log_installing "Oh My ZSH"
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
+
+install_mise(){
+	check_curl
+
+	log_installing "Mise"
+
+	curl https://mise.run | sh
+}
