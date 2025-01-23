@@ -17,6 +17,20 @@ log_downloading(){
 	printf "%b\n" "${BLUE}Downloading ${1}...${RESET_COLOR}\n"
 }
 
+setup_vars(){
+	VARS_PATH="$HOME/.vars.sh"
+	if [ -d $VARS_PATH ]
+	then
+		return
+	fi
+
+	printf "%b\n" "${PURPLE}Setup Variables...${RESET_COLOR}\n"
+	cp ./.vars.sh $HOME/
+	echo "source $VARS_PATH" >> $HOME/.bashrc
+	echo "source $VARS_PATH" >> $HOME/.zshrc
+}
+
+
 install_update_script(){
 	UPDATE_SCRIPT_URL="https://github.com/Dpbm/update-all"
 	UPDATE_SCRIPT_PATH="$HOME/update-all"

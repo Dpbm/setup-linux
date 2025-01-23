@@ -53,9 +53,8 @@ select_software(){
 }
 
 install_softwares(){
-	setup_directories && update_package_managers
+	setup_directories && update_package_managers && setup_vars
 
-	#setup vars and aliasses
 	for software in ${SELECTED_SOFTWARES[@]}; do
 		case "$software" in
 			'"updateAll"')
