@@ -15,6 +15,7 @@ declare -A SOFTWARES=(["Chrome"]=ON
 	["git"]=ON
 	["curl"]=ON
 	["virtualbox"]=OFF
+	["githubCLI"]=OFF
 )
 
 declare -A DESCRIPTIONS=(["Chrome"]="Google's Internet Browser" 
@@ -32,6 +33,7 @@ declare -A DESCRIPTIONS=(["Chrome"]="Google's Internet Browser"
 	["git"]="A version control cli tool"
 	["curl"]="command line tool for data transfering over internet"
 	["virtualbox"]="Oracle's virtualization platform (+ext pack)"
+	["githubCLI"]="A CLI to interact with your github"
 )
 
 DEFAULT_SOFTWARES=()
