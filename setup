@@ -23,7 +23,7 @@ select_distro(){
 	DISTRO=$(
 		whiptail --title "$TITLE" \
 			--nocancel \
-			--radiolist "Select Your Distro" \
+			--radiolist "Select Your Distro. Press Space to Select and Enter to go back." \
 			$WIDTH $HEIGHT 4 \
 			"${lines[@]}" \
 			3>&2 2>&1 1>&3
@@ -45,8 +45,8 @@ select_software(){
 	SELECTED_SOFTWARES=$(
 		whiptail --title "$TITLE" \
 			--nocancel \
-			--checklist "Select the Softwares you want to install" \
-			$WIDTH $HEIGHT 30 \
+			--checklist "Select the Softwares you want to install. Press Space to Select and Press Enter to go back." \
+			$WIDTH $HEIGHT 16 \
 			"${lines[@]}" \
 			3>&2 2>&1 1>&3
 	)
@@ -105,6 +105,9 @@ install_softwares(){
 			
 			'"githubCLI"')
 				install_github_cli
+				;;
+			'"exiftool"')
+				install_exiftool
 				;;
 			*)
 				;;

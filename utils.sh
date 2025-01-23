@@ -136,7 +136,7 @@ install_jetbrains_toolbox(){
 
 	log_downloading "Jetbrains Toolbox"
 	curl -L "$TOOLBOX_URL" -o /tmp/jetbrains-toolbox.tar.gz
-       	tar -xvf /tmp/jetbrains-toolbox.tar.gz
+       	tar -xvf /tmp/jetbrains-toolbox.tar.gz -C /tmp
 	mv /tmp/jetbrains-toolbox-2.5.2.35332 $HOME/jetbrains-toolbox
 
 	log_installing "Jetbrains Toolbox"
@@ -205,7 +205,7 @@ install_neovim(){
 
 	log_downloading "Neovim"	
 	curl -L "$NEOVIM_DOWNLOAD_URL" -o /tmp/nvim.tar.gz
-	tar -xvf /tmp/nvim.tar.gz
+	tar -xvf /tmp/nvim.tar.gz -C /tmp
 
 	mv /tmp/nvim-linux64 $HOME/nvim
 
@@ -228,4 +228,18 @@ install_github_cli(){
 	&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
 	&& sudo apt update \
 	&& sudo apt install gh -y
+}
+
+install_exiftool(){
+	check_curl
+
+	log_downloading "Exiftool"
+
+	EXIFTOOL_DOWNLOAD_URL="https://exiftool.org/Image-ExifTool-13.15.tar.gz"
+	curl -L "$EXIFTOOL_DOWNLOAD_URL" -o /tmp/exiftool.tar.gz
+	tar -xvf /tmp/exiftool.tar.gz -C /tmp
+	mv /tmp/Image-ExifTool-13.15 $HOME/exiftool
+
+	log_installing "Exiftool"
+	ln -s $HOME/exiftool/exiftool $LOCAL_BIN
 }
