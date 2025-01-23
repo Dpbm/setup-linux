@@ -34,7 +34,13 @@ select_software(){
 	# check if software is already selected
 	lines=()
 	for software in "${!SOFTWARES[@]}"; do
-		lines+=("$software" "${DESCRIPTIONS[$software]}" "${SOFTWARES[$software]}")
+		if [ $(echo $SELECTED_SOFTWARES | grep "$software" | wc -l) = 1 ]
+		then
+			lines+=("$software" "${DESCRIPTIONS[$software]}" ON)
+		else
+			lines+=("$software" "${DESCRIPTIONS[$software]}" OFF)
+		fi
+
 	done
 
 	SELECTED_SOFTWARES=$(
