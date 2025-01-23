@@ -91,16 +91,13 @@ install_curl(){
 
 install_chrome(){
 	CHROME_DOWNLOAD_URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-	
+
 	if [ $(which google-chrome) &>/dev/null ]
 	then
-		return 
+		return
 	fi
 
-	if [ ! $(which curl) &>/dev/null ]
-	then
-		install_curl
-	fi
+	check_curl
 	
 	log_downloading "Chrome"
 	curl -L "$CHROME_DOWNLOAD_URL" -o /tmp/chrome.deb
@@ -114,12 +111,14 @@ install_zsh(){
 }
 
 install_jetbrains_toolbox(){
-	TOOLBOX_URL="https://download-cdn.jetbrains.com/toolbox/jetbrains-toolbox-2.5.2.35332.tar.gz"
-
-	if [ ! $(which curl) &>/dev/null ]
+	if [ $(which jetbrains-toolbox) &>/dev/null ]
 	then
-		install_curl
+		return
 	fi
+
+	check_curl
+
+	TOOLBOX_URL="https://download-cdn.jetbrains.com/toolbox/jetbrains-toolbox-2.5.2.35332.tar.gz"
 
 	log_downloading "Jetbrains Toolbox"
 	curl -L "$TOOLBOX_URL" -o /tmp/jetbrains-toolbox.tar.gz
@@ -131,8 +130,15 @@ install_jetbrains_toolbox(){
 }
 
 install_docker(){
-	for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
-	sudo apt-get install ca-certificates curl -y
+
+	if [ $(which docker) &>/dev/null ]
+	then
+		return
+	fi
+
+	check_curl
+
+	sudo apt-get install ca-certificates -y
 	sudo install -m 0755 -d /etc/apt/keyrings
 	sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 	sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -150,13 +156,22 @@ install_docker(){
 	newgrp docker
 }
 
-install_vscode(){
-	VSCODE_DOWNLOAD_URL="https://vscode.download.prss.microsoft.com/dbazure/download/stable/cd4ee3b1c348a13bafd8f9ad8060705f6d4b9cba/code_1.96.4-1736991114_amd64.deb"
-	
+check_curl(){
 	if [ ! $(which curl) &>/dev/null ]
 	then
 		install_curl
 	fi
+}
+
+install_vscode(){
+	if [ $(which code) &>/dev/null ]
+	then
+		return
+	fi
+
+	check_curl
+
+	VSCODE_DOWNLOAD_URL="https://vscode.download.prss.microsoft.com/dbazure/download/stable/cd4ee3b1c348a13bafd8f9ad8060705f6d4b9cba/code_1.96.4-1736991114_amd64.deb"
 
 	log_downloading "VSCode"	
 	curl -L "$VSCODE_DOWNLOAD_URL" -o /tmp/vscode.deb
@@ -165,12 +180,14 @@ install_vscode(){
 }
 
 install_neovim(){
-	NEOVIM_DOWNLOAD_URL="https://github.com/neovim/neovim/releases/download/v0.10.3/nvim-linux64.tar.gz"
-
-	if [ ! $(which curl) &>/dev/null ]
+	if [ $(which nvim) &>/dev/null ]
 	then
-		install_curl
+		return
 	fi
+
+	check_curl
+
+	NEOVIM_DOWNLOAD_URL="https://github.com/neovim/neovim/releases/download/v0.10.3/nvim-linux64.tar.gz"
 
 	log_downloading "Neovim"	
 	curl -L "$NEOVIM_DOWNLOAD_URL" -o /tmp/nvim.tar.gz
@@ -180,4 +197,9 @@ install_neovim(){
 
 	log_installing "Neovim"	
 	ln -s $HOME/nvim/bin/nvim $LOCAL_BIN
+}
+
+install_virtualbox(){
+	log_installing "Virtual Box"
+	sudo apt install virtualbox virtualbox-ext-pack
 }

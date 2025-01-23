@@ -31,7 +31,6 @@ select_distro(){
 }
 
 select_software(){
-	# check if software is already selected
 	lines=()
 	for software in "${!SOFTWARES[@]}"; do
 		if [ $(echo $SELECTED_SOFTWARES | grep "$software" | wc -l) = 1 ]
@@ -101,8 +100,10 @@ install_softwares(){
 			'"NeoVim"')
 				install_neovim
 				;;
+			'"virtualbox"')
+				install_virtualbox
+				;;
 			*)
-				echo "FUCK"
 				;;
 		esac
 	done

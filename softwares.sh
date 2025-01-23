@@ -14,6 +14,7 @@ declare -A SOFTWARES=(["Chrome"]=ON
 	["updateAll"]=ON
 	["git"]=ON
 	["curl"]=ON
+	["virtualbox"]=OFF
 )
 
 declare -A DESCRIPTIONS=(["Chrome"]="Google's Internet Browser" 
@@ -30,6 +31,7 @@ declare -A DESCRIPTIONS=(["Chrome"]="Google's Internet Browser"
 	["updateAll"]="A simple script to update all your installed softwares"
 	["git"]="A version control cli tool"
 	["curl"]="command line tool for data transfering over internet"
+	["virtualbox"]="Oracle's virtualization platform (+ext pack)"
 )
 
 DEFAULT_SOFTWARES=()
@@ -37,6 +39,6 @@ for software in "${!SOFTWARES[@]}"
 do
 	if [ "${SOFTWARES[$software]}" == ON ]
 	then
-		DEFAULT_SOFTWARES+=("$software")
+		DEFAULT_SOFTWARES+=("\"$software\"")
 	fi
 done
