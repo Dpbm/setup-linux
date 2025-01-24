@@ -65,7 +65,7 @@ setup_directories(){
 
 update_package_managers(){
 	sudo apt update && sudo apt upgrade -y
-	sudo apt autoremove
+	sudo apt autoremove -y
 }
 
 install_git(){
@@ -257,4 +257,14 @@ install_mise(){
 	log_installing "Mise"
 
 	curl https://mise.run | sh
+}
+
+install_real_vnc_viewer(){
+	check_curl
+	
+	log_downloading "Real VNC Viewer"
+	VNC_DOWNLOAD_URL="https://downloads.realvnc.com/download/file/viewer.files/VNC-Viewer-7.13.1-Linux-x64.deb"
+	curl -L "$VNC_DOWNLOAD_URL" -o /tmp/vnc.deb
+	log_installing "Real VNC Viewer"
+	sudo apt install /tmp/vnc.deb -y
 }

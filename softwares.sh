@@ -19,6 +19,7 @@ declare -A SOFTWARES=(["Chrome"]=ON
 	["exiftool"]=ON
 	["ohmyzsh"]=ON
 	["mise"]=ON
+	["realvncviewer"]=OFF
 )
 
 declare -A DESCRIPTIONS=(["Chrome"]="Google's Internet Browser" 
@@ -40,6 +41,7 @@ declare -A DESCRIPTIONS=(["Chrome"]="Google's Internet Browser"
 	["exiftool"]="A tool to manipulate files metadata"
 	["ohmyzsh"]="A framework for managing zsh configs"
 	["mise"]="A tool for mananing your programming tools versions"
+	["realvncviewer"]="A VNC client"
 )
 
 DEFAULT_SOFTWARES=()

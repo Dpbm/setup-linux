@@ -114,6 +114,9 @@ install_softwares(){
 			'"mise"')
 				install_mise
 				;;
+			'"realvncviewer"')
+				install_real_vnc_viewer
+				;;
 			*)
 				;;
 		esac
